@@ -22,7 +22,7 @@
         <th>Number Plate</th>
         <th>Country Location</th>
       </thead>
-      <tbody></tbody>
+      <tbody id="remove"></tbody>
     </table>
 
     <button id="all">All Countries</button>
@@ -31,20 +31,44 @@
     <button id="ee">EE</button>
 
     <script>
-      const table = document.getElementById("viewvehicles");
+      const removeall = document.getElementById("remove");
 
-      document.getElementById("lt").addEventListener("click", (e) => {
+      const allfilter = document.getElementById("all");
+      allfilter.addEventListener("click", (e) => {
         e.preventDefault();
+        removeall.innerHTML = "";
+        fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((item) => {
+              const tr = document
+                .querySelector("#viewvehicles > tbody")
+                .insertRow();
 
+              const td1 = tr.insertCell();
+              td1.textContent = item.name;
+
+              const td2 = tr.insertCell();
+              td2.textContent = item.number_plate;
+
+              const td3 = tr.insertCell();
+              td3.textContent = item.country_location;
+            });
+          });
+      });
+
+      const ltfilter = document.getElementById("lt");
+      ltfilter.addEventListener("click", (e) => {
+        e.preventDefault();
+        removeall.innerHTML = "";
         fetch(
           "https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles/lt"
         )
           .then((res) => res.json())
-          .then((data) =>
-            // .then((data) => console.log(data));
+          .then((data) => {
             data.forEach((item) => {
               const tr = document
-                .querySelector("#viewvehicles >tbody")
+                .querySelector("#viewvehicles > tbody")
                 .insertRow();
 
               const td1 = tr.insertCell();
@@ -55,20 +79,21 @@
 
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
-            })
-          );
+            });
+          });
       });
-
-      document.getElementById("all").addEventListener("click", (e) => {
+      const lvfilter = document.getElementById("lv");
+      lvfilter.addEventListener("click", (e) => {
         e.preventDefault();
-
-        fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
+        removeall.innerHTML = "";
+        fetch(
+          "https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles/lv"
+        )
           .then((res) => res.json())
-          .then((data) =>
-            // .then((data) => console.log(data));
+          .then((data) => {
             data.forEach((item) => {
               const tr = document
-                .querySelector("#viewvehicles >tbody")
+                .querySelector("#viewvehicles > tbody")
                 .insertRow();
 
               const td1 = tr.insertCell();
@@ -79,8 +104,33 @@
 
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
-            })
-          );
+            });
+          });
+      });
+      const eefilter = document.getElementById("ee");
+      eefilter.addEventListener("click", (e) => {
+        e.preventDefault();
+        removeall.innerHTML = "";
+        fetch(
+          "https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles/ee"
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((item) => {
+              const tr = document
+                .querySelector("#viewvehicles > tbody")
+                .insertRow();
+
+              const td1 = tr.insertCell();
+              td1.textContent = item.name;
+
+              const td2 = tr.insertCell();
+              td2.textContent = item.number_plate;
+
+              const td3 = tr.insertCell();
+              td3.textContent = item.country_location;
+            });
+          });
       });
     </script>
   </body>

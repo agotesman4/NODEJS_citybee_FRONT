@@ -4,6 +4,13 @@ a {
   font-weight: bold;
 }
 
+button {
+  padding: 5px 10px;
+  color: rgb(240, 168, 36);
+  font-weight: bold;
+  background-color: white;
+}
+
 #addmodels,
 #modelscount,
 #models,
