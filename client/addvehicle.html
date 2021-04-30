@@ -17,24 +17,75 @@
     <a href="addmodel.html">Add Model</a>
 
     <form name="addvehicles" id="addvehicles">
-      <label for="name">Number Plate</label>
+      <label for="model_id">Model ID</label>
       <input
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Number Plate..."
+        type="number"
+        id="model_id"
+        name="model_id"
+        placeholder="Example: 1"
+        min="1"
         required
       />
 
-      <label for="price">Country Location</label>
+      <label for="number_plate">Number Plate</label>
       <input
-        type="number"
-        id="price"
-        name="price"
-        placeholder="Country Location..."
+        type="text"
+        id="number_plate"
+        name="number_plate"
+        placeholder="ABC789"
+        minlength="6"
+        maxlength="6"
+        required
+      />
+
+      <label for="country_location">Country Location</label>
+      <input
+        type="text"
+        id="country_location"
+        name="country_location"
+        placeholder="LT/LV/EE"
+        minlength="2"
+        maxlength="2"
+        pattern="[A-Z]+"
+        title="Only A-Z letters no Numbers!"
         required
       />
       <button type="submit">Add Vehicle</button>
     </form>
+    <script>
+      const catchError = (error) => {
+        const errorMessage = document.createElement("h2");
+        errorMessage.textContent = error;
+
+        document.body.append(errorMessage);
+      };
+      document.forms.addvehicles.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const model_id = Number(e.target.elements.model_id.value);
+        const number_plate = e.target.elements.number_plate.value;
+        const country_location = e.target.elements.country_location.value;
+
+        fetch(
+          "https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ model_id, number_plate, country_location }),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.id) {
+              alert("Added OK, PRESS CONTINUE");
+            } else {
+              catchError("BAD REQUEST");
+            }
+          })
+          .catch((e) => catchError(e.message));
+      });
+    </script>
   </body>
 </html>

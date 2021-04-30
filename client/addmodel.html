@@ -26,15 +26,50 @@
         required
       />
 
-      <label for="price">Add Price</label>
+      <label for="price">Add Price per Hour</label>
       <input
         type="number"
-        id="price"
-        name="price"
-        placeholder="Car price..."
+        id="hour_price"
+        name="hour_price"
+        placeholder="1"
+        min="0"
+        max="20"
         required
       />
-      <button type="submit">Add Car</button>
+      <button type="submit">Add Model</button>
     </form>
+
+    <script>
+      const catchError = (error) => {
+        const errorMessage = document.createElement("h2");
+        errorMessage.textContent = error;
+
+        document.body.append(errorMessage);
+      };
+
+      document.forms.addmodels.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = e.target.elements.name.value;
+        const hour_price = Number(e.target.elements.hour_price.value);
+
+        fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/models", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, hour_price }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.id) {
+              alert("Added OK, PRESS CONTINUE");
+            } else {
+              catchError("BAD REQUEST");
+            }
+          })
+          .catch((e) => catchError(e.message));
+      });
+    </script>
   </body>
 </html>
