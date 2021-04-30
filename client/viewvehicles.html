@@ -25,30 +25,63 @@
       <tbody></tbody>
     </table>
 
-    <button onclick="filterSelection('ALL')">All Countries</button>
-    <button onclick="filterSelection('LT')">LT</button>
-    <button onclick="filterSelection('LV')">LV</button>
-    <button onclick="filterSelection('EE')">EE</button>
+    <button id="all">All Countries</button>
+    <button id="lt">LT</button>
+    <button id="lv">LV</button>
+    <button id="ee">EE</button>
 
     <script>
-      fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
-        .then((res) => res.json())
-        .then((data) =>
-          data.forEach((item) => {
-            const tr = document
-              .querySelector("#viewvehicles >tbody")
-              .insertRow();
+      const table = document.getElementById("viewvehicles");
 
-            const td1 = tr.insertCell();
-            td1.textContent = item.name;
+      document.getElementById("lt").addEventListener("click", (e) => {
+        e.preventDefault();
 
-            const td2 = tr.insertCell();
-            td2.textContent = item.number_plate;
+        fetch(
+          "https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles/lt"
+        )
+          .then((res) => res.json())
+          .then((data) =>
+            // .then((data) => console.log(data));
+            data.forEach((item) => {
+              const tr = document
+                .querySelector("#viewvehicles >tbody")
+                .insertRow();
 
-            const td3 = tr.insertCell();
-            td3.textContent = item.country_location;
-          })
-        );
+              const td1 = tr.insertCell();
+              td1.textContent = item.name;
+
+              const td2 = tr.insertCell();
+              td2.textContent = item.number_plate;
+
+              const td3 = tr.insertCell();
+              td3.textContent = item.country_location;
+            })
+          );
+      });
+
+      document.getElementById("all").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
+          .then((res) => res.json())
+          .then((data) =>
+            // .then((data) => console.log(data));
+            data.forEach((item) => {
+              const tr = document
+                .querySelector("#viewvehicles >tbody")
+                .insertRow();
+
+              const td1 = tr.insertCell();
+              td1.textContent = item.name;
+
+              const td2 = tr.insertCell();
+              td2.textContent = item.number_plate;
+
+              const td3 = tr.insertCell();
+              td3.textContent = item.country_location;
+            })
+          );
+      });
     </script>
   </body>
 </html>

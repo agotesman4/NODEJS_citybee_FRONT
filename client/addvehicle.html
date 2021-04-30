@@ -83,6 +83,9 @@
             } else {
               catchError("BAD REQUEST");
             }
+            e.target.elements.model_id.value = "";
+            e.target.elements.number_plate.value = "";
+            e.target.elements.country_location.value = "";
           })
           .catch((e) => catchError(e.message));
       });

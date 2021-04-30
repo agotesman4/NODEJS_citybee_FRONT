@@ -67,6 +67,9 @@
             } else {
               catchError("BAD REQUEST");
             }
+
+            e.target.elements.name.value = "";
+            e.target.elements.hour_price.value = "";
           })
           .catch((e) => catchError(e.message));
       });
