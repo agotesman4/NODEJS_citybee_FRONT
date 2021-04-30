@@ -1,5 +1,5 @@
 a {
-  padding: 5px 10px;
+  padding: 0px 5px;
   color: rgb(240, 168, 36);
   font-weight: bold;
 }
@@ -9,6 +9,7 @@ button {
   color: rgb(240, 168, 36);
   font-weight: bold;
   background-color: white;
+  border: 0.5px solid rgb(240, 168, 36);
 }
 
 #addmodels,
@@ -18,4 +19,14 @@ button {
 #viewvehicles,
 #addvehicles {
   margin-top: 50px;
+}
+
+th {
+  background-color: rgb(240, 168, 36);
+}
+
+.logo {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
 }
