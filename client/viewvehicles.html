@@ -24,40 +24,31 @@
       </thead>
       <tbody></tbody>
     </table>
+
+    <button onclick="filterSelection('ALL')">All Countries</button>
+    <button onclick="filterSelection('LT')">LT</button>
+    <button onclick="filterSelection('LV')">LV</button>
+    <button onclick="filterSelection('EE')">EE</button>
+
     <script>
-      const catchError = (error) => {
-        document
-          .querySelector("#viewvehicles>table")
-          .forEach((element) => (element.style.display = "none"));
-
-        const errorMessage = document.createElement("h2");
-        errorMessage.textContent = error;
-
-        document.body.append(errorMessage);
-      };
-
       fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
         .then((res) => res.json())
-        .then((data) => {
-          if (data && data.lenght > 1) {
-            data.forEach((item) => {
-              const tr = document
-                .querySelector("#viewvehicles > tbody")
-                .insertRow();
+        .then((data) =>
+          data.forEach((item) => {
+            const tr = document
+              .querySelector("#viewvehicles >tbody")
+              .insertRow();
 
-              const td1 = tr.insertCell();
-              td1.textContent = req.body.model_id;
+            const td1 = tr.insertCell();
+            td1.textContent = item.name;
 
-              const td2 = tr.insertCell();
-              td2.textContent = req.body.number_plate;
+            const td2 = tr.insertCell();
+            td2.textContent = item.number_plate;
 
-              const td3 = tr.insertCell();
-              td3.textContent = req.body.country_location;
-            });
-          } else {
-            catchError("NO DATA GIVEN BACK");
-          }
-        });
+            const td3 = tr.insertCell();
+            td3.textContent = item.country_location;
+          })
+        );
     </script>
   </body>
 </html>
