@@ -24,5 +24,40 @@
       </thead>
       <tbody></tbody>
     </table>
+    <script>
+      const catchError = (error) => {
+        document
+          .querySelector("#viewvehicles>table")
+          .forEach((element) => (element.style.display = "none"));
+
+        const errorMessage = document.createElement("h2");
+        errorMessage.textContent = error;
+
+        document.body.append(errorMessage);
+      };
+
+      fetch("https://nodejs-citybee-backas-ybigp.ondigitalocean.app/vehicles")
+        .then((res) => res.json())
+        .then((data) => {
+          if (data && data.lenght > 1) {
+            data.forEach((item) => {
+              const tr = document
+                .querySelector("#viewvehicles > tbody")
+                .insertRow();
+
+              const td1 = tr.insertCell();
+              td1.textContent = req.body.model_id;
+
+              const td2 = tr.insertCell();
+              td2.textContent = req.body.number_plate;
+
+              const td3 = tr.insertCell();
+              td3.textContent = req.body.country_location;
+            });
+          } else {
+            catchError("NO DATA GIVEN BACK");
+          }
+        });
+    </script>
   </body>
 </html>

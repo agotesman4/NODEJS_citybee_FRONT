@@ -35,7 +35,7 @@
     <script>
       const catchError = (error) => {
         document
-          .querySelector("table")
+          .querySelectorAll("table")
           .forEach((element) => (element.style.display = "none"));
 
         const errorMessage = document.createElement("h2");
