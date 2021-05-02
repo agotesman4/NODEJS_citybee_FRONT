@@ -39,6 +39,7 @@
         <th>Car Model</th>
         <th>Number Plate</th>
         <th>Country Location</th>
+        <th>Price with Taxes</th>
       </thead>
       <tbody id="remove"></tbody>
     </table>
@@ -69,6 +70,9 @@
               td2.textContent = item.number_plate;
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              const td4 = tr.insertCell();
+              td4.textContent = item.price_pvm;
+
               allfilter.classList.add("primary");
               ltfilter.classList.remove("primary");
               lvfilter.classList.remove("primary");
@@ -96,6 +100,9 @@
               td2.textContent = item.number_plate;
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              const td4 = tr.insertCell();
+              td4.textContent = item.price_pvm;
+
               allfilter.classList.remove("primary");
               ltfilter.classList.add("primary");
               lvfilter.classList.remove("primary");
@@ -122,6 +129,9 @@
               td2.textContent = item.number_plate;
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              const td4 = tr.insertCell();
+              td4.textContent = item.price_pvm;
+
               allfilter.classList.remove("primary");
               ltfilter.classList.remove("primary");
               lvfilter.classList.add("primary");
@@ -148,6 +158,9 @@
               td2.textContent = item.number_plate;
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              const td4 = tr.insertCell();
+              td4.textContent = item.price_pvm;
+
               allfilter.classList.remove("primary");
               ltfilter.classList.remove("primary");
               lvfilter.classList.remove("primary");
