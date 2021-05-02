@@ -46,12 +46,6 @@
 
     <script>
       const removeall = document.getElementById("remove");
-      const catchError = (error) => {
-        const errorMessage = document.createElement("h2");
-        errorMessage.textContent = error;
-        document.body.append(errorMessage);
-        catchError("NO DATA GIVEN");
-      };
 
       const allfilter = document.getElementById("all");
       allfilter.addEventListener("click", (e) => {
