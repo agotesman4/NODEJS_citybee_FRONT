@@ -27,6 +27,13 @@
     <a href="addvehicle.html">Add Vehicle</a>
     <a href="addmodel.html">Add Model</a>
 
+    <div class="buttons" id="filter">
+      <button id="all">All Countries</button>
+      <button id="lt">LT</button>
+      <button id="lv">LV</button>
+      <button id="ee">EE</button>
+    </div>
+
     <table id="viewvehicles">
       <thead>
         <th>Car Model</th>
@@ -36,20 +43,14 @@
       <tbody id="remove"></tbody>
     </table>
 
-    <button id="all">All Countries</button>
-    <button id="lt">LT</button>
-    <button id="lv">LV</button>
-    <button id="ee">EE</button>
-
     <script>
+      const removeall = document.getElementById("remove");
       const catchError = (error) => {
         const errorMessage = document.createElement("h2");
         errorMessage.textContent = error;
-
         document.body.append(errorMessage);
         catchError("NO DATA GIVEN");
       };
-      const removeall = document.getElementById("remove");
 
       const allfilter = document.getElementById("all");
       allfilter.addEventListener("click", (e) => {
@@ -62,15 +63,16 @@
               const tr = document
                 .querySelector("#viewvehicles > tbody")
                 .insertRow();
-
               const td1 = tr.insertCell();
               td1.textContent = item.name;
-
               const td2 = tr.insertCell();
               td2.textContent = item.number_plate;
-
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              allfilter.classList.add("primary");
+              ltfilter.classList.remove("primary");
+              lvfilter.classList.remove("primary");
+              eefilter.classList.remove("primary");
             });
           });
       });
@@ -88,15 +90,16 @@
               const tr = document
                 .querySelector("#viewvehicles > tbody")
                 .insertRow();
-
               const td1 = tr.insertCell();
               td1.textContent = item.name;
-
               const td2 = tr.insertCell();
               td2.textContent = item.number_plate;
-
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              allfilter.classList.remove("primary");
+              ltfilter.classList.add("primary");
+              lvfilter.classList.remove("primary");
+              eefilter.classList.remove("primary");
             });
           });
       });
@@ -113,15 +116,16 @@
               const tr = document
                 .querySelector("#viewvehicles > tbody")
                 .insertRow();
-
               const td1 = tr.insertCell();
               td1.textContent = item.name;
-
               const td2 = tr.insertCell();
               td2.textContent = item.number_plate;
-
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              allfilter.classList.remove("primary");
+              ltfilter.classList.remove("primary");
+              lvfilter.classList.add("primary");
+              eefilter.classList.remove("primary");
             });
           });
       });
@@ -138,15 +142,16 @@
               const tr = document
                 .querySelector("#viewvehicles > tbody")
                 .insertRow();
-
               const td1 = tr.insertCell();
               td1.textContent = item.name;
-
               const td2 = tr.insertCell();
               td2.textContent = item.number_plate;
-
               const td3 = tr.insertCell();
               td3.textContent = item.country_location;
+              allfilter.classList.remove("primary");
+              ltfilter.classList.remove("primary");
+              lvfilter.classList.remove("primary");
+              eefilter.classList.add("primary");
             });
           });
       });

@@ -25,19 +25,31 @@ button {
   font-weight: bold;
   background-color: rgba(243, 113, 27, 255);
   color: white;
-  border: 0.5px solid rgba(243, 113, 27, 255);
   font-weight: bold;
+  outline: none;
 }
 
 #addmodels,
-#modelscount,
 #models,
 #progress,
-#viewvehicles,
 #addvehicles {
   margin-top: 50px;
 }
 
+#viewvehicles,
+#modelscount {
+  margin-top: 10px;
+}
+
 th {
   background-color: rgba(243, 113, 27, 255);
+}
+
+.buttons {
+  padding-top: 40px;
+}
+.primary {
+  background-color: white;
+  border: 1px solid rgba(243, 113, 27, 255);
+  color: rgba(243, 113, 27, 255);
 }
